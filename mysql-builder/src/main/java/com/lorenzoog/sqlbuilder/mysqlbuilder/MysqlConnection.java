@@ -11,7 +11,7 @@ public class MysqlConnection implements SqlConnection {
 
     private final Connection connection;
 
-    MysqlConnection(Connection connection) {
+    public MysqlConnection(Connection connection) {
         this.connection = connection;
     }
 
