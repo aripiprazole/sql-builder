@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutorService;
 
 public interface SqlBuilder {
 
+    SqlBuilder raw(String rawSql);
+
     SqlBuilder update();
     SqlBuilder alter();
     SqlBuilder union();
