@@ -1,4 +1,7 @@
 package com.lorenzoo.sqlbuilder;
 
-public class SqlBuilder {
+public final class SqlBuilder {
+
+
+
 }
