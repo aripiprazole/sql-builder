@@ -17,6 +17,7 @@ public interface SqlBuilder {
     SqlBuilder where(String column, Object value);
     SqlBuilder insert(String... columns);
     SqlBuilder replace(String... columns);
+    SqlBuilder values(Object... values);
     SqlBuilder limit(int limit);
     SqlBuilder select(String... columns);
     SqlBuilder set(String column, Object value);
