@@ -151,7 +151,7 @@ public final class MysqlBuilder implements SqlBuilder {
 
     @Override
     public String toString() {
-        if(rawSql != null) return rawSql;
+        if (rawSql != null) return rawSql;
 
         return "";
     }
