@@ -39,6 +39,8 @@ public class InsertQueryBuilder extends QueryBuilder {
 
             return preparedStatement.executeQuery();
         } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+
             return null;
         }
     }
