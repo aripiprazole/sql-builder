@@ -6,8 +6,12 @@ import com.lorenzoog.sqlbuilder.sqlapi.ThrowableFunction;
 import java.sql.ResultSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
 public abstract class QueryBuilder implements SqlBuilder {
+    private static final ExecutorService asyncPool = ForkJoinPool.commonPool();
+
     @Override
     public SqlBuilder raw(String rawSql) {
         return null;
@@ -94,28 +98,47 @@ public abstract class QueryBuilder implements SqlBuilder {
     }
 
     @Override
-    public <T> CompletableFuture<T> runAsync(ExecutorService executorService, ThrowableFunction<ResultSet, T> callback) {
+    public final <T> CompletableFuture<T> runAsync(ExecutorService executorService, ThrowableFunction<ResultSet, T> callback) {
+        return runAsync().thenApplyAsync(resultSet -> {
+            try {
+                return callback.run(resultSet);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+            return null;
+        }, executorService);
+    }
+
+    @Override
+    public final <T> CompletableFuture<T> runAsync(ThrowableFunction<ResultSet, T> callback) {
+        return runAsync(asyncPool, callback);
+    }
+
+    @Override
+    public final <T> T runBlocking(ThrowableFunction<ResultSet, T> callback) {
+        try {
+            return callback.run(runBlocking());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
-    public <T> CompletableFuture<T> runAsync(ThrowableFunction<ResultSet, T> callback) {
-        return null;
+    public final CompletableFuture<ResultSet> runAsync(ExecutorService executorService) {
+        return CompletableFuture.supplyAsync(this::runBlocking, executorService);
     }
 
     @Override
-    public <T> T runBlocking(ThrowableFunction<ResultSet, T> callback) {
-        return null;
+    public final CompletableFuture<ResultSet> runAsync() {
+        return runAsync(asyncPool);
     }
 
     @Override
-    public CompletableFuture<ResultSet> runAsync(ExecutorService executorService) {
-        return null;
-    }
-
-    @Override
-    public CompletableFuture<ResultSet> runAsync() {
-        return null;
+    public final CompletableFuture<Boolean> executeAsync() {
+        return CompletableFuture.supplyAsync(this::execute);
     }
 
     @Override
@@ -126,10 +149,5 @@ public abstract class QueryBuilder implements SqlBuilder {
     @Override
     public boolean execute() {
         return false;
-    }
-
-    @Override
-    public CompletableFuture<Boolean> executeAsync() {
-        return null;
     }
 }
