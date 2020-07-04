@@ -33,8 +33,8 @@ public final class InsertQueryBuilder extends QueryBuilder {
     @Override
     public ResultSet runBlocking() {
         try (final PreparedStatement preparedStatement = connection.prepare(this)) {
-            for (int index = 1; index < values.length + 1; index++) {
-                preparedStatement.setObject(index, values[index]);
+            for (int index = 0; index < values.length; index++) {
+                preparedStatement.setObject(index + 1, values[index]);
             }
 
             return preparedStatement.executeQuery();
