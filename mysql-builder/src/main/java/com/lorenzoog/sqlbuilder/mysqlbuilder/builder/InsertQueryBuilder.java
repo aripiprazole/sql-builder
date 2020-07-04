@@ -32,8 +32,8 @@ public final class InsertQueryBuilder extends QueryBuilder {
 
     @Override
     public ResultSet runBlocking() {
-        try(final PreparedStatement preparedStatement = connection.prepare(this)) {
-            for (int index = 1; index < values.length + 1; index ++) {
+        try (final PreparedStatement preparedStatement = connection.prepare(this)) {
+            for (int index = 1; index < values.length + 1; index++) {
                 preparedStatement.setObject(index, values[index]);
             }
 
@@ -55,8 +55,8 @@ public final class InsertQueryBuilder extends QueryBuilder {
 
         boolean isFirst = true;
 
-        for(final String column : columns) {
-            if(!isFirst) stringBuilder.append(", ");
+        for (final String column : columns) {
+            if (!isFirst) stringBuilder.append(", ");
 
             stringBuilder.append(column);
 
@@ -67,8 +67,8 @@ public final class InsertQueryBuilder extends QueryBuilder {
 
         isFirst = true;
 
-        for(final Object ignored : columns) {
-            if(!isFirst) stringBuilder.append(", ");
+        for (final Object ignored : columns) {
+            if (!isFirst) stringBuilder.append(", ");
 
             stringBuilder.append('?');
 
