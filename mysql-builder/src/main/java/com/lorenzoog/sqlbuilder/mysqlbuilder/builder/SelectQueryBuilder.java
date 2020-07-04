@@ -12,8 +12,6 @@ import java.util.*;
 
 public final class SelectQueryBuilder extends QueryBuilder {
 
-    private String rawSql = "";
-
     private final SqlConnection connection;
 
     private final String table;
