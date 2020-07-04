@@ -1,6 +1,7 @@
 package com.lorenzoog.sqlbuilder.mysqlbuilder;
 
 import com.lorenzoog.sqlbuilder.mysqlbuilder.builder.InsertQueryBuilder;
+import com.lorenzoog.sqlbuilder.mysqlbuilder.builder.SelectQueryBuilder;
 import com.lorenzoog.sqlbuilder.sqlapi.SqlBuilder;
 import com.lorenzoog.sqlbuilder.sqlapi.SqlConnection;
 import com.lorenzoog.sqlbuilder.sqlapi.ThrowableFunction;
@@ -85,7 +86,7 @@ public class MysqlBuilder implements SqlBuilder {
 
     @Override
     public SqlBuilder select(String... columns) {
-        return null;
+        return new SelectQueryBuilder(connection, table, columns);
     }
 
     @Override
