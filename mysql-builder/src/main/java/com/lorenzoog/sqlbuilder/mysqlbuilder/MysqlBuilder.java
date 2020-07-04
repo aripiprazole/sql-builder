@@ -66,6 +66,16 @@ public class MysqlBuilder implements SqlBuilder {
     }
 
     @Override
+    public SqlBuilder values(Object... values) {
+        return null;
+    }
+
+    @Override
+    public SqlBuilder limit(int limit) {
+        return null;
+    }
+
+    @Override
     public SqlBuilder select(String... columns) {
         return null;
     }
