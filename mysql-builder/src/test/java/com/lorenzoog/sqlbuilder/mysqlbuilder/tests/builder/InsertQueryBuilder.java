@@ -20,8 +20,6 @@ public final class InsertQueryBuilder extends TestCase {
                 .insert("username")
                 .values("Name");
 
-        System.out.println(builder);
-
         assertEquals("INSERT INTO users(username) VALUES(?)", builder.toString());
     }
 
