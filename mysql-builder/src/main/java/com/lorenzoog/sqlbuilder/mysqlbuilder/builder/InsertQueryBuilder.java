@@ -53,15 +53,26 @@ public class InsertQueryBuilder extends QueryBuilder {
                 .append(table)
                 .append('(');
 
+        boolean isFirst = true;
+
         for(String column : columns) {
-            stringBuilder.append(column)
-                    .append(", ");
+            if(!isFirst) stringBuilder.append(", ");
+
+            stringBuilder.append(column);
+
+            isFirst = false;
         }
 
         stringBuilder.append(") VALUES (");
 
+        isFirst = true;
+
         for(Object ignored : columns) {
-            stringBuilder.append("?, ");
+            if(!isFirst) stringBuilder.append(", ");
+
+            stringBuilder.append('?');
+
+            isFirst = false;
         }
 
         stringBuilder.append(')');
