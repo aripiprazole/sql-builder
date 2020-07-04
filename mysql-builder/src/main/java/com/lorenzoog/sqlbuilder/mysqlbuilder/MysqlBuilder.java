@@ -1,6 +1,8 @@
 package com.lorenzoog.sqlbuilder.mysqlbuilder;
 
+import com.lorenzoog.sqlbuilder.mysqlbuilder.builder.InsertQueryBuilder;
 import com.lorenzoog.sqlbuilder.sqlapi.SqlBuilder;
+import com.lorenzoog.sqlbuilder.sqlapi.SqlConnection;
 import com.lorenzoog.sqlbuilder.sqlapi.ThrowableFunction;
 import com.sun.istack.internal.Nullable;
 
@@ -9,6 +11,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
 public class MysqlBuilder implements SqlBuilder {
+
+    private final SqlConnection connection;
+    private final String table;
+
+    public MysqlBuilder(SqlConnection connection, String table) {
+        this.connection = connection;
+        this.table = table;
+    }
 
     @Nullable
     private String rawSql = null;
@@ -57,7 +67,7 @@ public class MysqlBuilder implements SqlBuilder {
 
     @Override
     public SqlBuilder insert(String... columns) {
-        return null;
+        return new InsertQueryBuilder(connection, table, columns);
     }
 
     @Override
