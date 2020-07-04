@@ -42,62 +42,62 @@ public abstract class QueryBuilder implements SqlBuilder {
     }
 
     @Override
-    public SqlBuilder where(String column, String operator, Object value) {
+    public SqlBuilder where(final String column, final String operator, Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder where(String column, Object value) {
+    public SqlBuilder where(final String column, final Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder insert(String... columns) {
+    public SqlBuilder insert(final String... columns) {
         return null;
     }
 
     @Override
-    public SqlBuilder values(Object... values) {
+    public SqlBuilder values(final Object... values) {
         return null;
     }
 
     @Override
-    public SqlBuilder replace(String... columns) {
+    public SqlBuilder replace(final String... columns) {
         return null;
     }
 
     @Override
-    public SqlBuilder limit(int limit) {
+    public SqlBuilder limit(final int limit) {
         return null;
     }
 
     @Override
-    public SqlBuilder select(String... columns) {
+    public SqlBuilder select(final String... columns) {
         return null;
     }
 
     @Override
-    public SqlBuilder set(String column, Object value) {
+    public SqlBuilder set(final String column, final Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder orderBy(String column) {
+    public SqlBuilder orderBy(final String column) {
         return null;
     }
 
     @Override
-    public SqlBuilder orderByDesc(String column) {
+    public SqlBuilder orderByDesc(final String column) {
         return null;
     }
 
     @Override
-    public SqlBuilder groupBy(String... column) {
+    public SqlBuilder groupBy(final String... column) {
         return null;
     }
 
     @Override
-    public final <T> CompletableFuture<T> runAsync(ExecutorService executorService, ThrowableFunction<ResultSet, T> callback) {
+    public final <T> CompletableFuture<T> runAsync(final ExecutorService executorService, final ThrowableFunction<ResultSet, T> callback) {
         return runAsync().thenApplyAsync(resultSet -> {
             try {
                 return callback.run(resultSet);
@@ -110,12 +110,12 @@ public abstract class QueryBuilder implements SqlBuilder {
     }
 
     @Override
-    public final <T> CompletableFuture<T> runAsync(ThrowableFunction<ResultSet, T> callback) {
+    public final <T> CompletableFuture<T> runAsync(final ThrowableFunction<ResultSet, T> callback) {
         return runAsync(asyncPool, callback);
     }
 
     @Override
-    public final <T> T runBlocking(ThrowableFunction<ResultSet, T> callback) {
+    public final <T> T runBlocking(final ThrowableFunction<ResultSet, T> callback) {
         try {
             return callback.run(runBlocking());
         } catch (Exception exception) {
@@ -126,7 +126,7 @@ public abstract class QueryBuilder implements SqlBuilder {
     }
 
     @Override
-    public final CompletableFuture<ResultSet> runAsync(ExecutorService executorService) {
+    public final CompletableFuture<ResultSet> runAsync(final ExecutorService executorService) {
         return CompletableFuture.supplyAsync(this::runBlocking, executorService);
     }
 

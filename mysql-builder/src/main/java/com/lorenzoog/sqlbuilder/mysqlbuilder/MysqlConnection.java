@@ -11,22 +11,22 @@ public class MysqlConnection implements SqlConnection {
 
     private final Connection connection;
 
-    public MysqlConnection(Connection connection) {
+    public MysqlConnection(final Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public SqlBuilder table(String name) {
+    public SqlBuilder table(final String name) {
         return new MysqlBuilder(this, name);
     }
 
     @Override
-    public PreparedStatement prepare(SqlBuilder sqlBuilder) throws SQLException {
+    public PreparedStatement prepare(final SqlBuilder sqlBuilder) throws SQLException {
         return connection.prepareStatement(sqlBuilder.toString());
     }
 
     @Override
-    public PreparedStatement prepare(String statement) throws SQLException {
+    public PreparedStatement prepare(final String statement) throws SQLException {
         return connection.prepareStatement(statement);
     }
 

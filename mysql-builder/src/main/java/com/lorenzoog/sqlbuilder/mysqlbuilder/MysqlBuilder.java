@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 
-public class MysqlBuilder implements SqlBuilder {
+public final class MysqlBuilder implements SqlBuilder {
 
     private final SqlConnection connection;
     private final String table;
@@ -55,77 +55,77 @@ public class MysqlBuilder implements SqlBuilder {
     }
 
     @Override
-    public SqlBuilder where(String column, String operator, Object value) {
+    public SqlBuilder where(final String column, final String operator, final Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder where(String column, Object value) {
+    public SqlBuilder where(final String column, final Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder insert(String... columns) {
+    public SqlBuilder insert(final String... columns) {
         return new InsertQueryBuilder(connection, table, columns);
     }
 
     @Override
-    public SqlBuilder replace(String... columns) {
+    public SqlBuilder replace(final String... columns) {
         return null;
     }
 
     @Override
-    public SqlBuilder values(Object... values) {
+    public SqlBuilder values(final Object... values) {
         return null;
     }
 
     @Override
-    public SqlBuilder limit(int limit) {
+    public SqlBuilder limit(final int limit) {
         return null;
     }
 
     @Override
-    public SqlBuilder select(String... columns) {
+    public SqlBuilder select(final String... columns) {
         return new SelectQueryBuilder(connection, table, columns);
     }
 
     @Override
-    public SqlBuilder set(String column, Object value) {
+    public SqlBuilder set(final String column, final Object value) {
         return null;
     }
 
     @Override
-    public SqlBuilder orderBy(String column) {
+    public SqlBuilder orderBy(final String column) {
         return null;
     }
 
     @Override
-    public SqlBuilder orderByDesc(String column) {
+    public SqlBuilder orderByDesc(final String column) {
         return null;
     }
 
     @Override
-    public SqlBuilder groupBy(String... column) {
+    public SqlBuilder groupBy(final String... column) {
         return null;
     }
 
     @Override
-    public <T> CompletableFuture<T> runAsync(ExecutorService executorService, ThrowableFunction<ResultSet, T> callback) {
+    public <T> CompletableFuture<T> runAsync(final ExecutorService executorService, final ThrowableFunction<ResultSet, T> callback) {
         return null;
     }
 
     @Override
-    public <T> CompletableFuture<T> runAsync(ThrowableFunction<ResultSet, T> callback) {
+    public <T> CompletableFuture<T> runAsync(final ThrowableFunction<ResultSet, T> callback) {
         return null;
     }
 
     @Override
-    public <T> T runBlocking(ThrowableFunction<ResultSet, T> callback) {
+    public <T> T runBlocking(final ThrowableFunction<ResultSet, T> callback) {
         return null;
     }
 
     @Override
-    public CompletableFuture<ResultSet> runAsync(ExecutorService executorService) {
+    public CompletableFuture<ResultSet> runAsync(final ExecutorService executorService) {
         return null;
     }
 
