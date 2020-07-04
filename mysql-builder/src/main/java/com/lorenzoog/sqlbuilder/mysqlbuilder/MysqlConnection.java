@@ -17,7 +17,7 @@ public class MysqlConnection implements SqlConnection {
 
     @Override
     public SqlBuilder table(String name) {
-        return null;
+        return new MysqlBuilder(this, name);
     }
 
     @Override
