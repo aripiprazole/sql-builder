@@ -25,7 +25,7 @@ public final class SelectQueryBuilder extends QueryBuilder {
         this.connection = connection;
         this.table = table;
         this.columns = columns;
-        this.wheres = new HashSet<>();
+        this.wheres = new LinkedHashSet<>();
     }
 
     @Override
