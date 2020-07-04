@@ -49,7 +49,7 @@ public class InsertQueryBuilder extends QueryBuilder {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("INSERT INTO")
+        stringBuilder.append("INSERT INTO ")
                 .append(table)
                 .append('(');
 
@@ -63,7 +63,7 @@ public class InsertQueryBuilder extends QueryBuilder {
             isFirst = false;
         }
 
-        stringBuilder.append(") VALUES (");
+        stringBuilder.append(") VALUES(");
 
         isFirst = true;
 
