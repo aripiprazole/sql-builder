@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class SelectQueryBuilder extends QueryBuilder {
+public final class SelectQueryBuilder extends QueryBuilder {
 
     private String rawSql = "";
 
@@ -23,7 +23,7 @@ public class SelectQueryBuilder extends QueryBuilder {
     private String orderBy = null;
     private String limit = null;
 
-    public SelectQueryBuilder(SqlConnection connection, String table, String... columns) {
+    public SelectQueryBuilder(final SqlConnection connection, final String table, final String... columns) {
         this.connection = connection;
         this.table = table;
         this.columns = columns;
@@ -31,33 +31,33 @@ public class SelectQueryBuilder extends QueryBuilder {
     }
 
     @Override
-    public SqlBuilder where(String column, Object value) {
+    public SqlBuilder where(final String column, final Object value) {
         return where(column, "=", value);
     }
 
     @Override
-    public SqlBuilder where(String column, String operator, Object value) {
+    public SqlBuilder where(final String column, final String operator, final Object value) {
         wheres.add(new Where(column, operator, value));
 
         return this;
     }
 
     @Override
-    public SqlBuilder orderBy(String column) {
+    public SqlBuilder orderBy(final String column) {
         orderBy = String.format("ORDER BY %s", column);
 
         return this;
     }
 
     @Override
-    public SqlBuilder orderByDesc(String column) {
+    public SqlBuilder orderByDesc(final String column) {
         orderBy = String.format("ORDER BY DESC %s", column);
 
         return this;
     }
 
     @Override
-    public SqlBuilder limit(int limit) {
+    public SqlBuilder limit(final int limit) {
         this.limit = String.format("LIMIT %s", limit);
 
         return this;
@@ -84,7 +84,7 @@ public class SelectQueryBuilder extends QueryBuilder {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("SELECT ");
 
@@ -103,7 +103,7 @@ public class SelectQueryBuilder extends QueryBuilder {
 
         isFirst = true;
 
-        for (Where where : wheres) {
+        for (final Where where : wheres) {
             if (!isFirst) stringBuilder.append(", ");
             else stringBuilder.append(" WHERE ");
 

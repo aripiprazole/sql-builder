@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class InsertQueryBuilder extends QueryBuilder {
+public final class InsertQueryBuilder extends QueryBuilder {
 
     private final SqlConnection connection;
 
@@ -17,14 +17,14 @@ public class InsertQueryBuilder extends QueryBuilder {
 
     private Object[] values;
 
-    public InsertQueryBuilder(SqlConnection connection, String table, String... columns) {
+    public InsertQueryBuilder(final SqlConnection connection, final String table, final String... columns) {
         this.connection = connection;
         this.table = table;
         this.columns = columns;
     }
 
     @Override
-    public SqlBuilder values(Object... values) {
+    public SqlBuilder values(final Object... values) {
         this.values = values;
 
         return this;
@@ -32,7 +32,7 @@ public class InsertQueryBuilder extends QueryBuilder {
 
     @Override
     public ResultSet runBlocking() {
-        try(PreparedStatement preparedStatement = connection.prepare(this)) {
+        try(final PreparedStatement preparedStatement = connection.prepare(this)) {
             for (int index = 1; index < values.length + 1; index ++) {
                 preparedStatement.setObject(index, values[index]);
             }
@@ -47,7 +47,7 @@ public class InsertQueryBuilder extends QueryBuilder {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("INSERT INTO ")
                 .append(table)
@@ -55,7 +55,7 @@ public class InsertQueryBuilder extends QueryBuilder {
 
         boolean isFirst = true;
 
-        for(String column : columns) {
+        for(final String column : columns) {
             if(!isFirst) stringBuilder.append(", ");
 
             stringBuilder.append(column);
@@ -67,7 +67,7 @@ public class InsertQueryBuilder extends QueryBuilder {
 
         isFirst = true;
 
-        for(Object ignored : columns) {
+        for(final Object ignored : columns) {
             if(!isFirst) stringBuilder.append(", ");
 
             stringBuilder.append('?');
