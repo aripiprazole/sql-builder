@@ -17,10 +17,10 @@ public final class InsertQueryBuilder extends TestCase {
 
         SqlBuilder builder = connection
                 .table("users")
-                .insert("username")
-                .values("Name");
+                .insert("username", "email")
+                .values("Name", "Email");
 
-        assertEquals("INSERT INTO users(username) VALUES(?)", builder.toString());
+        assertEquals("INSERT INTO users(username, email) VALUES(?, ?)", builder.toString());
     }
 
 }
