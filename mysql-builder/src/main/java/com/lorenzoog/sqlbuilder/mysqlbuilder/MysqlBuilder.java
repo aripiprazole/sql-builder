@@ -4,7 +4,6 @@ import com.lorenzoog.sqlbuilder.mysqlbuilder.builder.InsertQueryBuilder;
 import com.lorenzoog.sqlbuilder.sqlapi.SqlBuilder;
 import com.lorenzoog.sqlbuilder.sqlapi.SqlConnection;
 import com.lorenzoog.sqlbuilder.sqlapi.ThrowableFunction;
-import com.sun.istack.internal.Nullable;
 
 import java.sql.ResultSet;
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +19,6 @@ public class MysqlBuilder implements SqlBuilder {
         this.table = table;
     }
 
-    @Nullable
     private String rawSql = null;
 
     @Override
