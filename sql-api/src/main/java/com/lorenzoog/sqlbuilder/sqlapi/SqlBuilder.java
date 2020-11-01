@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutorService;
 
 public interface SqlBuilder {
 
+    SqlBuilder raw(String rawSql);
+
     SqlBuilder update();
     SqlBuilder alter();
     SqlBuilder union();
@@ -15,6 +17,8 @@ public interface SqlBuilder {
     SqlBuilder where(String column, Object value);
     SqlBuilder insert(String... columns);
     SqlBuilder replace(String... columns);
+    SqlBuilder values(Object... values);
+    SqlBuilder limit(int limit);
     SqlBuilder select(String... columns);
     SqlBuilder set(String column, Object value);
     SqlBuilder orderBy(String column);

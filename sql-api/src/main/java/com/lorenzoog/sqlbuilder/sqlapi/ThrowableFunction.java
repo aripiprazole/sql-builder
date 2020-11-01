@@ -1,8 +1,8 @@
 package com.lorenzoog.sqlbuilder.sqlapi;
 
 @FunctionalInterface
-public interface ThrowableFunction<R, T> {
+public interface ThrowableFunction<T, R> {
 
-    R run(T t);
+    R run(final T t) throws Exception;
 
 }
