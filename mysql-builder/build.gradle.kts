@@ -2,7 +2,7 @@ plugins {
     java
 }
 
-group = "com.lorenzoog.sqlbuilder"
+group = "me.devgabi.sqlbuilder"
 version = "1.0-SNAPSHOT"
 
 repositories {
